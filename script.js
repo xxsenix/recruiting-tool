@@ -34,6 +34,7 @@ function getRepo(repoName) {
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
+        $('#results-list').empty();
         const repoName = $('#js-search-user').val();
         getRepo(repoName);
     })
