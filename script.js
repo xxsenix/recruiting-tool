@@ -2,12 +2,13 @@
 
 function displayResults(responseJson) {
     $('#results-list').empty();
+    $('#js-error-message').empty();
 
     for (let i = 0; i < responseJson.length; i++) {
         console.log(responseJson[i]);
         $('#results-list').append(
         `<li><h3>${responseJson[i].name}</h3>
-        <p>${responseJson[i].html_url}</p>
+        <p><a href="${responseJson[i].html_url}">${responseJson[i].html_url}</a></p>
         </li>`
         );
     }
