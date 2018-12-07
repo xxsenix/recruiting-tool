@@ -1,5 +1,18 @@
 'use strict';
 
+function displayResults(responseJson) {
+    $('#results-list').empty();
+
+    for (let i = 0; i < responseJson.length; i++) {
+        console.log(responseJson[i]);
+        $('#results-list').append(
+        `<li><h3>${responseJson[i].name}</h3>
+        <p>${responseJson[i].html_url}</p>
+        </li>`
+        );
+    }
+    $('#results').removeClass('hidden');
+}
 
 function getRepo(repoName) {
     const url = `https://api.github.com/users/${repoName}/repos`;
@@ -11,7 +24,7 @@ function getRepo(repoName) {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => console.log(responseJson))
+        .then(responseJson => displayResults(responseJson))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
